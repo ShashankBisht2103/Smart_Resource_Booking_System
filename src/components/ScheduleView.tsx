@@ -5,8 +5,11 @@ import { Calendar, Clock, User, MapPin } from "lucide-react";
 import * as backend from "@/integrations/backend/client";
 import { toast } from "sonner";
 import { Booking } from "@/integrations/backend/client";
+<<<<<<< HEAD
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+=======
+>>>>>>> 279f32751ea9e4b7af603b974022215c4cf4f65a
 
 interface ScheduleViewProps {
   userId?: string; // If provided, filter bookings for this user only
@@ -15,6 +18,7 @@ interface ScheduleViewProps {
   showFilters?: boolean; // Whether to show the filter buttons
 }
 
+<<<<<<< HEAD
 interface Resource {
   id: number;
   name: string;
@@ -24,6 +28,8 @@ interface Resource {
   description: string;
 }
 
+=======
+>>>>>>> 279f32751ea9e4b7af603b974022215c4cf4f65a
 const ScheduleView = ({ 
   userId, 
   title = "Schedule", 
@@ -34,10 +40,13 @@ const ScheduleView = ({
   const [timetable, setTimetable] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<"all" | "upcoming" | "past">("all");
+<<<<<<< HEAD
   const [selectedSlot, setSelectedSlot] = useState<{ date: string; startTime: string; endTime: string } | null>(null);
   const [availableResources, setAvailableResources] = useState<Resource[]>([]);
   const [resourcesLoading, setResourcesLoading] = useState(false);
   const [showResourcesModal, setShowResourcesModal] = useState(false);
+=======
+>>>>>>> 279f32751ea9e4b7af603b974022215c4cf4f65a
 
   useEffect(() => {
     const fetchSchedule = async () => {
@@ -103,6 +112,7 @@ const ScheduleView = ({
     return new Date(dateString).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   };
 
+<<<<<<< HEAD
   const handleTimeSlotClick = async (dateStr: string, startTime: Date, endTime: Date) => {
     const startTimeStr = startTime.toTimeString().substring(0, 5); // HH:MM format
     const endTimeStr = endTime.toTimeString().substring(0, 5); // HH:MM format
@@ -131,6 +141,8 @@ const ScheduleView = ({
     }
   };
 
+=======
+>>>>>>> 279f32751ea9e4b7af603b974022215c4cf4f65a
   const filteredBookings = bookings.filter(booking => {
     if (!date) { // Only apply time filters if we're not filtering by specific date
       const now = new Date();
@@ -182,6 +194,7 @@ const ScheduleView = ({
   );
 
   return (
+<<<<<<< HEAD
     <>
       <Card>
         <CardHeader>
@@ -372,6 +385,123 @@ const ScheduleView = ({
         </DialogContent>
       </Dialog>
     </>
+=======
+    <Card>
+      <CardHeader>
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <CardTitle className="flex items-center gap-2">
+            <Calendar className="h-5 w-5" />
+            {title}
+          </CardTitle>
+          {showFilters && !date && (
+            <div className="flex gap-2">
+              <button
+                className={`px-3 py-1 text-sm rounded-full ${
+                  filter === "all" 
+                    ? "bg-primary text-primary-foreground" 
+                    : "bg-muted hover:bg-muted/80"
+                }`}
+                onClick={() => setFilter("all")}
+              >
+                All
+              </button>
+              <button
+                className={`px-3 py-1 text-sm rounded-full ${
+                  filter === "upcoming" 
+                    ? "bg-primary text-primary-foreground" 
+                    : "bg-muted hover:bg-muted/80"
+                }`}
+                onClick={() => setFilter("upcoming")}
+              >
+                Upcoming
+              </button>
+              <button
+                className={`px-3 py-1 text-sm rounded-full ${
+                  filter === "past" 
+                    ? "bg-primary text-primary-foreground" 
+                    : "bg-muted hover:bg-muted/80"
+                }`}
+                onClick={() => setFilter("past")}
+              >
+                Past
+              </button>
+            </div>
+          )}
+        </div>
+      </CardHeader>
+      <CardContent>
+        {loading ? (
+          <div className="flex justify-center py-8">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+          </div>
+        ) : sortedDateKeys.length > 0 ? (
+          <div className="space-y-6">
+            {sortedDateKeys.map(dateKey => (
+              <div key={dateKey}>
+                {!date && ( // Only show date header when not filtering by specific date
+                  <h3 className="font-semibold text-lg mb-3 flex items-center gap-2">
+                    <Calendar className="h-4 w-4" />
+                    {formatDate(dateKey)}
+                  </h3>
+                )}
+                <div className="space-y-3">
+                  {groupedSchedule[dateKey].map(item => (
+                    <div 
+                      key={`${item.type}-${item.id || item.booking_id || item.subject_code}`} 
+                      className="flex flex-col sm:flex-row sm:items-center justify-between p-4 border rounded-lg hover:bg-muted/50 transition-colors"
+                    >
+                      <div className="flex-1 mb-2 sm:mb-0">
+                        {item.type === 'booking' ? (
+                          <>
+                            <div className="flex items-center gap-2 mb-1">
+                              <span className="font-medium">{item.resource_name}</span>
+                              {getStatusBadge(item.status)}
+                            </div>
+                            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                              <Clock className="h-4 w-4" />
+                              <span>{formatTime(item.start_time)} - {formatTime(item.end_time)}</span>
+                            </div>
+                            {userId ? (
+                              <p className="text-sm mt-1">Booked for: {item.purpose || "No purpose specified"}</p>
+                            ) : (
+                              <p className="text-sm mt-1">Booked by: {item.user_name}</p>
+                            )}
+                          </>
+                        ) : (
+                          <>
+                            <div className="flex items-center gap-2 mb-1">
+                              <span className="font-medium">{item.subject_code}</span>
+                              <Badge variant="default">{item.subject_name}</Badge>
+                            </div>
+                            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                              <Clock className="h-4 w-4" />
+                              <span>{formatTime(item.start_time)} - {formatTime(item.end_time)}</span>
+                            </div>
+                            <div className="flex items-center gap-2 text-sm mt-1">
+                              <User className="h-4 w-4" />
+                              <span>{item.faculty_name || "No faculty assigned"}</span>
+                            </div>
+                          </>
+                        )}
+                      </div>
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <MapPin className="h-4 w-4" />
+                        <span>{item.resource_name || item.venue}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-8 text-muted-foreground">
+            No schedule items found
+          </div>
+        )}
+      </CardContent>
+    </Card>
+>>>>>>> 279f32751ea9e4b7af603b974022215c4cf4f65a
   );
 };
 

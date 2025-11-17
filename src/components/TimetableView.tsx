@@ -4,12 +4,18 @@ import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock, User, MapPin } from "lucide-react";
 import * as backend from "@/integrations/backend/client";
 import { toast } from "sonner";
+<<<<<<< HEAD
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 interface TimetableEntry {
   id: number;
   section: string;
+=======
+
+interface TimetableEntry {
+  id: number;
+>>>>>>> 279f32751ea9e4b7af603b974022215c4cf4f65a
   day: string;
   time_start: string;
   time_end: string;
@@ -20,6 +26,7 @@ interface TimetableEntry {
   resource_id: number;
 }
 
+<<<<<<< HEAD
 interface Resource {
   id: number;
   name: string;
@@ -29,6 +36,8 @@ interface Resource {
   description: string;
 }
 
+=======
+>>>>>>> 279f32751ea9e4b7af603b974022215c4cf4f65a
 interface TimetableViewProps {
   title?: string;
   showTodayOnly?: boolean;
@@ -37,10 +46,13 @@ interface TimetableViewProps {
 const TimetableView = ({ title = "Timetable", showTodayOnly = false }: TimetableViewProps) => {
   const [timetable, setTimetable] = useState<TimetableEntry[]>([]);
   const [loading, setLoading] = useState(true);
+<<<<<<< HEAD
   const [selectedSlot, setSelectedSlot] = useState<{ date: string; startTime: string; endTime: string } | null>(null);
   const [availableResources, setAvailableResources] = useState<Resource[]>([]);
   const [resourcesLoading, setResourcesLoading] = useState(false);
   const [showResourcesModal, setShowResourcesModal] = useState(false);
+=======
+>>>>>>> 279f32751ea9e4b7af603b974022215c4cf4f65a
 
   useEffect(() => {
     const fetchTimetable = async () => {
@@ -70,6 +82,7 @@ const TimetableView = ({ title = "Timetable", showTodayOnly = false }: Timetable
     return `${hours}:${minutes}`;
   };
 
+<<<<<<< HEAD
   const handleTimeSlotClick = async (day: string, startTime: string, endTime: string) => {
     // Convert day to date
     const today = new Date();
@@ -107,6 +120,8 @@ const TimetableView = ({ title = "Timetable", showTodayOnly = false }: Timetable
     }
   };
 
+=======
+>>>>>>> 279f32751ea9e4b7af603b974022215c4cf4f65a
   // Group timetable entries by day
   const groupedTimetable: Record<string, TimetableEntry[]> = {};
   timetable.forEach(entry => {
@@ -124,6 +139,7 @@ const TimetableView = ({ title = "Timetable", showTodayOnly = false }: Timetable
   );
 
   return (
+<<<<<<< HEAD
     <>
       <Card>
         <CardHeader>
@@ -257,6 +273,71 @@ const TimetableView = ({ title = "Timetable", showTodayOnly = false }: Timetable
         </DialogContent>
       </Dialog>
     </>
+=======
+    <Card>
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2">
+          <Calendar className="h-5 w-5" />
+          {title}
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        {loading ? (
+          <div className="flex justify-center py-8">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+          </div>
+        ) : sortedDays.length > 0 ? (
+          <div className="space-y-6">
+            {sortedDays.map(day => (
+              <div key={day}>
+                <h3 className="font-semibold text-lg mb-3 flex items-center gap-2">
+                  <Calendar className="h-4 w-4" />
+                  {day === 'MON' && 'Monday'}
+                  {day === 'TUE' && 'Tuesday'}
+                  {day === 'WED' && 'Wednesday'}
+                  {day === 'THU' && 'Thursday'}
+                  {day === 'FRI' && 'Friday'}
+                  {day === 'SAT' && 'Saturday'}
+                  {day === 'SUN' && 'Sunday'}
+                </h3>
+                <div className="space-y-3">
+                  {groupedTimetable[day].map(entry => (
+                    <div 
+                      key={entry.id} 
+                      className="flex flex-col sm:flex-row sm:items-center justify-between p-4 border rounded-lg hover:bg-muted/50 transition-colors"
+                    >
+                      <div className="flex-1 mb-2 sm:mb-0">
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="font-medium">{entry.subject_code}</span>
+                          <Badge variant="default">{entry.subject_name}</Badge>
+                        </div>
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                          <Clock className="h-4 w-4" />
+                          <span>{formatTime(entry.time_start)} - {formatTime(entry.time_end)}</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-sm mt-1">
+                          <User className="h-4 w-4" />
+                          <span>{entry.faculty_name || "No faculty assigned"}</span>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <MapPin className="h-4 w-4" />
+                        <span>{entry.venue}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-8 text-muted-foreground">
+            No timetable entries found
+          </div>
+        )}
+      </CardContent>
+    </Card>
+>>>>>>> 279f32751ea9e4b7af603b974022215c4cf4f65a
   );
 };
 

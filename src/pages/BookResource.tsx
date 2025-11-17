@@ -11,10 +11,13 @@ import Footer from "@/components/Footer";
 import { Navigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import * as backend from "@/integrations/backend/client";
+<<<<<<< HEAD
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import { MapPin, User } from "lucide-react";
 import AvailableResourcesViewer from "@/components/AvailableResourcesViewer";
+=======
+>>>>>>> 279f32751ea9e4b7af603b974022215c4cf4f65a
 
 const BookResource = () => {
   const { isAuthenticated, loading, user } = useAuth();
@@ -26,9 +29,12 @@ const BookResource = () => {
   const [selectedResource, setSelectedResource] = useState<string>("");
   const [freeSlots, setFreeSlots] = useState<any[]>([]);
   const [loadingSlots, setLoadingSlots] = useState<boolean>(false);
+<<<<<<< HEAD
   const [availableResources, setAvailableResources] = useState<any[]>([]);
   const [resourcesLoading, setResourcesLoading] = useState<boolean>(false);
   const [showResourcesModal, setShowResourcesModal] = useState(false);
+=======
+>>>>>>> 279f32751ea9e4b7af603b974022215c4cf4f65a
 
   useEffect(() => {
     const fetchData = async () => {
@@ -112,6 +118,7 @@ const BookResource = () => {
     }
   };
 
+<<<<<<< HEAD
   const handleViewAvailableResources = async () => {
     if (!selectedSlot || !date) {
       toast.error("Please select a time slot and date first");
@@ -135,6 +142,8 @@ const BookResource = () => {
     }
   };
 
+=======
+>>>>>>> 279f32751ea9e4b7af603b974022215c4cf4f65a
   const filteredResources = selectedType 
     ? resources.filter(resource => resource.type_id === parseInt(selectedType))
     : [];
@@ -328,11 +337,14 @@ const BookResource = () => {
             </Card>
           </div>
         </div>
+<<<<<<< HEAD
 
         {/* Available Resources Viewer - Added at the bottom */}
         <div className="mt-8">
           <AvailableResourcesViewer />
         </div>
+=======
+>>>>>>> 279f32751ea9e4b7af603b974022215c4cf4f65a
       </main>
 
       <Footer />

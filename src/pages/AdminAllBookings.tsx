@@ -11,7 +11,10 @@ import { useAuth } from "@/hooks/useAuth";
 import * as backend from "@/integrations/backend/client";
 import ScheduleView from "@/components/ScheduleView";
 import TimetableView from "@/components/TimetableView";
+<<<<<<< HEAD
 import AvailableResourcesViewer from "@/components/AvailableResourcesViewer";
+=======
+>>>>>>> 279f32751ea9e4b7af603b974022215c4cf4f65a
 
 const AdminAllBookings = () => {
   const { isAuthenticated, loading, user, userRole } = useAuth();
@@ -233,7 +236,10 @@ const AdminAllBookings = () => {
         <div className="mb-8 animate-fade-in">
           <h1 className="text-4xl font-bold mb-2">All Bookings</h1>
           <p className="text-muted-foreground">Manage all user reservations</p>
+<<<<<<< HEAD
           <p className="text-sm text-muted-foreground mt-2">Click on any schedule entry to see available resources for that time slot</p>
+=======
+>>>>>>> 279f32751ea9e4b7af603b974022215c4cf4f65a
         </div>
 
         {loadingBookings ? (
@@ -264,9 +270,12 @@ const AdminAllBookings = () => {
               <TabsTrigger value="my-past" className="px-8">
                 My Past ({pastBookings.length})
               </TabsTrigger>
+<<<<<<< HEAD
               <TabsTrigger value="available-resources" className="px-8">
                 Available Resources
               </TabsTrigger>
+=======
+>>>>>>> 279f32751ea9e4b7af603b974022215c4cf4f65a
             </TabsList>
 
             <TabsContent value="today">
@@ -352,10 +361,13 @@ const AdminAllBookings = () => {
                 </div>
               )}
             </TabsContent>
+<<<<<<< HEAD
 
             <TabsContent value="available-resources">
               <AvailableResourcesViewer />
             </TabsContent>
+=======
+>>>>>>> 279f32751ea9e4b7af603b974022215c4cf4f65a
           </Tabs>
         )}
       </main>

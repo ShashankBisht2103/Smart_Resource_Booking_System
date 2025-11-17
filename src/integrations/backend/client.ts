@@ -108,10 +108,13 @@ export const updateTimeSlot = (id: number, updates: any) =>
     body: JSON.stringify(updates),
   });
 
+<<<<<<< HEAD
 // New function to get available resources for a specific time slot
 export const getAvailableResources = (date: string, startTime: string, endTime: string) => 
   apiFetch(`/resources/available?date=${date}&start_time=${startTime}&end_time=${endTime}`);
 
+=======
+>>>>>>> 279f32751ea9e4b7af603b974022215c4cf4f65a
 // Timetable API
 export const getTimetable = () => apiFetch('/timetable');
 

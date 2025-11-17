@@ -650,6 +650,7 @@ def get_all_booked_time_slots():
     
     return jsonify(booked_slots)
 
+<<<<<<< HEAD
 # New endpoint to get available resources for a specific time slot
 @app.route('/api/resources/available', methods=['GET'])
 def get_available_resources():
@@ -739,6 +740,8 @@ def get_available_resources():
     
     return jsonify(available_resources)
 
+=======
+>>>>>>> 279f32751ea9e4b7af603b974022215c4cf4f65a
 # Timetable endpoints
 @app.route('/api/timetable', methods=['GET'])
 def get_timetable():
@@ -748,7 +751,11 @@ def get_timetable():
         FROM timetable t
         JOIN subjects s ON t.subject_code = s.subject_code
         JOIN resources r ON t.venue = r.name
+<<<<<<< HEAD
         ORDER BY t.section, t.day, t.time_start
+=======
+        ORDER BY t.day, t.time_start
+>>>>>>> 279f32751ea9e4b7af603b974022215c4cf4f65a
     ''').fetchall()
     conn.close()
     
@@ -768,7 +775,11 @@ def get_today_timetable():
         JOIN subjects s ON t.subject_code = s.subject_code
         JOIN resources r ON t.venue = r.name
         WHERE t.day = ?
+<<<<<<< HEAD
         ORDER BY t.section, t.time_start
+=======
+        ORDER BY t.time_start
+>>>>>>> 279f32751ea9e4b7af603b974022215c4cf4f65a
     ''', (day_name,)).fetchall()
     conn.close()
     

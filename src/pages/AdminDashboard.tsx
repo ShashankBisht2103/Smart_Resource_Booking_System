@@ -11,7 +11,10 @@ import * as backend from "@/integrations/backend/client";
 import { toast } from "sonner";
 import ScheduleView from "@/components/ScheduleView";
 import TimetableView from "@/components/TimetableView";
+<<<<<<< HEAD
 import AvailableResourcesViewer from "@/components/AvailableResourcesViewer";
+=======
+>>>>>>> 279f32751ea9e4b7af603b974022215c4cf4f65a
 
 const AdminDashboard = () => {
   const { isAuthenticated, loading, userRole, user } = useAuth();
@@ -150,7 +153,10 @@ const AdminDashboard = () => {
             <Card>
               <CardHeader>
                 <CardTitle>Today's Schedule</CardTitle>
+<<<<<<< HEAD
                 <p className="text-sm text-muted-foreground">Click on any entry to see available resources</p>
+=======
+>>>>>>> 279f32751ea9e4b7af603b974022215c4cf4f65a
               </CardHeader>
               <CardContent>
                 <ScheduleView date={today} title="" showFilters={false} />
@@ -160,7 +166,10 @@ const AdminDashboard = () => {
             <Card>
               <CardHeader>
                 <CardTitle>Today's Classes</CardTitle>
+<<<<<<< HEAD
                 <p className="text-sm text-muted-foreground">Click on any entry to see available resources</p>
+=======
+>>>>>>> 279f32751ea9e4b7af603b974022215c4cf4f65a
               </CardHeader>
               <CardContent>
                 <TimetableView title="" showTodayOnly={true} />
@@ -168,9 +177,12 @@ const AdminDashboard = () => {
             </Card>
           </div>
 
+<<<<<<< HEAD
           {/* Available Resources Viewer */}
           <AvailableResourcesViewer />
 
+=======
+>>>>>>> 279f32751ea9e4b7af603b974022215c4cf4f65a
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Quick Actions */}
             <Card>
@@ -187,9 +199,12 @@ const AdminDashboard = () => {
                 <Button className="w-full" variant="outline" asChild>
                   <a href="/admin/requests">Book Resource for Admin</a>
                 </Button>
+<<<<<<< HEAD
                 <Button className="w-full" variant="outline" asChild>
                   <a href="/book-resource">Book Resource for User</a>
                 </Button>
+=======
+>>>>>>> 279f32751ea9e4b7af603b974022215c4cf4f65a
               </CardContent>
             </Card>
 

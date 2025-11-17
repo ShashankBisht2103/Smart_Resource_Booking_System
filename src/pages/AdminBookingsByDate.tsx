@@ -14,7 +14,10 @@ import { toast } from "sonner";
 import { Navigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import * as backend from "@/integrations/backend/client";
+<<<<<<< HEAD
 import AvailableResourcesViewer from "@/components/AvailableResourcesViewer";
+=======
+>>>>>>> 279f32751ea9e4b7af603b974022215c4cf4f65a
 
 const AdminBookingsByDate = () => {
   const { isAuthenticated, loading, userRole } = useAuth();
@@ -203,9 +206,12 @@ const AdminBookingsByDate = () => {
               )}
             </CardContent>
           </Card>
+<<<<<<< HEAD
 
           {/* Available Resources Viewer */}
           <AvailableResourcesViewer />
+=======
+>>>>>>> 279f32751ea9e4b7af603b974022215c4cf4f65a
         </div>
       </main>
       <Footer />
